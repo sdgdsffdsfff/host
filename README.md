@@ -4,7 +4,7 @@
 ## 管理后台 cms
 - 地址：[host.qiang.it](http://host.qiang.it)
 
-## 功能列表
+### 功能列表
 - [x] 统一登陆账号：aotu
 - [x] 业务管理：
 	- [x] 支持一个业务填写多个地址
@@ -18,7 +18,7 @@
 ## 扩展程序 chrome-extension
 - 下载地址：[chrome.google.com/webstore/detail/o2host/cjgpkcjnggbioabdochkbipnkdhenfpl](//chrome.google.com/webstore/detail/o2host/cjgpkcjnggbioabdochkbipnkdhenfpl)
 
-## 功能列表
+### 功能列表
 - [x] 支持业务（domain）个性化 host 设置：
 	- [x] 展示当前业务可选择的 host 方案
 	- [x] 不同业务代理规则各自生效，互不影响
