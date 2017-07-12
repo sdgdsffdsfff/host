@@ -64,7 +64,7 @@ var fullDomain = ['portal.cms.jd.com', 'channel.jd.com'];
 function getStorageData(callback) {
 	chrome.storage.local.get('proxyData', function(data){
 		var caseId = '';
-		if(data.proxyData.length > 0) {
+		if(data && data.proxyData) {
 			storageData = data.proxyData;
 			for (var i = 0; i < storageData.length; i++) {
 				var item = storageData[i];

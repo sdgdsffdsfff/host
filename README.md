@@ -13,6 +13,7 @@
 - [x] host 方案管理：
 	- [x] 支持添加方案描述
 	- [x] 支持 host 规则批量输入
+	- [ ] 支持共用 host (misc/static) 的快捷添加
 	- [ ] host 规则校验
 
 ## 扩展程序 chrome-extension
