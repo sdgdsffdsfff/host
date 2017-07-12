@@ -1,0 +1,322 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+a {
+  outline: none;
+}
+
+body,
+.o2_host {
+  width: 320px;
+  height: 450px;
+  background: #F9FAFC;
+}
+
+.o2host_header {
+  position: relative;
+  color: #fff;  
+  background: linear-gradient(to right, #1F2D3D, #475669);
+  padding: 10px 10px 46px;
+  height: 40px;
+}
+.o2host_header:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: url("https://aotu.io/img/ball_1408.png") 50% 50% no-repeat;
+  background-size: auto 380px;
+  opacity: 0.1;
+}
+
+.o2host_tit_link {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.o2host_logo {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: 0;
+  top: 5px;
+  outline: none;
+}
+
+.o2host_logo_top,
+.o2host_logo_bottom {
+  position: absolute;
+  width: 30px;
+  height: 15px;
+  left: 0;
+}
+.o2host_logo_top {
+  top: 0;
+}
+.o2host_logo_top:before,
+.o2host_logo_top:after {
+  content: ''; 
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #fff;
+  top: 0;
+}
+.o2host_logo_top:before {
+  border-radius: 50% 50% 0 50%;  
+  left: 0;
+}
+.o2host_logo_top:after {
+  border-color: #20a0ff;
+  border-radius: 50% 0 50% 0; 
+  left: 16px;
+  top: 0;
+}
+.o2host_logo_bottom {
+  top: 16px;
+}
+.o2host_logo_bottom:before,
+.o2host_logo_bottom:after {
+  content: ''; 
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #fff;
+  top: 0;
+}
+.o2host_logo_bottom:before {
+  border-radius: 50% 0 50% 50%;  
+  left: 0;
+}
+.o2host_logo_bottom:after {
+  border-radius: 0 50% 50% 50%;  
+  left: 16px;
+}
+
+.o2host_tit {
+  position: relative;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  margin: 0;
+  font-size: 18px;
+  padding-left: 36px;
+  font-weight: normal;
+}
+.o2host_copyright{
+  float: right;
+  font-size: 12px;
+  color: #C0CCDA;
+  height: 40px;
+  line-height: 40px;
+  opacity: 0.25;
+}
+
+.o2host_copyright_link {
+  color: #C0CCDA;
+}
+
+.o2host_case {
+  position: relative;
+  margin-top: -36px;
+}
+.o2host_case_tit {
+  position: relative;
+  font-size: 12px;
+  color: #324057;
+  margin: 0 0 10px;
+  height: 16px;
+  line-height: 16px;
+  padding: 10px 10px;
+  border-bottom: 1px solid #c0ccda;
+  text-align: center;
+  background: #fff;
+}
+
+.o2host_case_tit:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  margin-left: -3px;
+  width: 6px;
+  height: 6px;
+  background: #F9FAFC;
+  border: 1px solid #c0ccda;
+  border-color: #c0ccda #c0ccda transparent transparent;
+  transform: rotate(-45deg);
+}
+
+.o2host_case_loading{
+  position: relative;
+  height: 290px;
+  display: none;
+}
+
+.o2host_case_loading_img {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  margin: -8px 0 0 -25px;
+  width: 50px;
+}
+.o2host_case_isLoading .o2host_case_loading{
+  display: block;
+}
+.o2host_case_blank {
+  height: 280px;
+  background: #fff;
+  border: 1px dashed #c0ccda;
+  /*margin-bottom: 10px;*/
+  border-radius: 3px;
+  margin: 5px 10px;
+  display: none;
+}
+.o2host_case_isBlank .o2host_case_blank{
+  display: block;
+}
+.o2host_case_blank_img {
+  display: block;
+  margin: 100px auto 20px;
+  width: 200px;
+  opacity: 0.5;
+}
+.o2host_case_blank_txt {
+  text-align: center;
+  font-size: 14px;
+  color: #d1d1d1;
+}
+.o2host_case_list {
+  height: 280px;
+  padding: 5px 10px;
+  overflow: auto;
+  /*  border: 1px solid #c0ccda;
+  border-radius: 4px;*/
+  /*background: #fff;*/
+}
+.o2host_case_isBlank .o2host_case_list,
+.o2host_case_isLoading .o2host_case_list{
+  display: none;
+}
+.o2host_case_item {
+  position: relative;
+  display: block;
+  border: 1px solid transparent;
+  border-left-width: 4px;
+  /*border-left: 0;*/
+  border-radius: 3px;
+  margin-bottom: 8px;
+  padding: 0 10px 0 6px;
+  background: #fff;
+  /*margin: 5px 10px;*/
+  /*border-radius: 4px;*/
+  /*margin-bottom: 10px;*/
+  overflow: hidden;
+  /*box-sizing: border-box;*/
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: 0.5s all;
+}
+.o2host_case_item:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+.o2host_case_item_active {
+  border: 1px solid #20a0ff;
+  border-left-width: 4px;
+}
+
+.o2host_case_item_active .o2host_case_item_name{
+  color: #20a0ff;
+}
+.o2host_case_item_active:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.o2host_case_item_name {
+  font-size: 14px;
+  color: #324057;
+  margin: 0;
+  height: 34px;
+  line-height: 34px;
+}
+.o2host_case_item_intro {
+  font-size: 12px;
+  color: #99A9BF;
+  margin-bottom: 10px;
+  line-height: 18px;
+}
+.o2host_case_item_radio {
+  opacity: 0;
+  outline: none;
+  position: absolute;
+  z-index: -1;
+  left: -999px;
+}
+.o2host_case_footer {
+  padding: 10px;
+  height: 34px;
+}
+.o2host_mod_btn {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #bfcbd9;
+  color: #1f2d3d;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.o2host_case_confirm {
+  color: #fff;
+  background-color: #20a0ff;
+  border-color: #20a0ff;
+  margin-right: 10px;
+}
+
+.o2host_case_isBlank .o2host_case_confirm,
+.o2host_case_isLoading .o2host_case_confirm {
+  display: none;
+}
+
+.o2host_author {
+  float: right;
+  margin-top: 4px;
+  font-size: 12px;
+  color: #C0CCDA;
+  line-height: 16px;
+  height: 16px;
+  opacity: 0.5;
+  text-align: right;
+}
+
+.o2host_config {
+  position: relative;
+  line-height: 30px;
+  float: right;
+  font-size: 12px;
+  padding: 0 10px 0 30px;
+  background: #324057;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.o2host_config_icon {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 10px;
+  top: 7px;
+  background: url("./icon128.png") no-repeat;
+  background-size: 100%;
+}
