@@ -1,5 +1,4 @@
 # host 统一配置平台
-- [host.qiang.it/about/?id=host](http://host.qiang.it/about/?id=host)
 
 ## 管理后台 cms
 - 地址：[host.qiang.it](http://host.qiang.it)
@@ -13,7 +12,7 @@
 - [x] host 方案管理：
 	- [x] 支持添加方案描述
 	- [x] 支持 host 规则批量输入
-	- [ ] 支持共用 host (misc/static) 的快捷添加
+	- [ ] 支持公用 host (misc/static) 的快捷添加
 	- [ ] host 规则校验
 
 ## 扩展程序 chrome-extension
@@ -24,4 +23,5 @@
 	- [x] 展示当前业务可选择的 host 方案
 	- [x] 不同业务代理规则各自生效，互不影响
 - [x] 记住上一次的配置
+- [ ] 清除 host 选择
 - [x] 支持 cms 预览页（url）个性化 host 设置

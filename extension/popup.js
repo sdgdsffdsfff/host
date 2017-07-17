@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				this.blank = document.querySelector('#blank');
 				this.blankTxt = document.querySelector('#blankTxt');
 				this.confirm = document.querySelector('#confirm');
+				this.clear = document.querySelector('#clear');
 				this.aotu = document.querySelector('#gotoAotu');
 				this.about = document.querySelector('#gotoAbout');
 				// 初始化操作
@@ -84,8 +85,23 @@ document.addEventListener('DOMContentLoaded', function () {
 				_this.confirm.addEventListener('click', function() {
 					_this.confirmCallback()
 				})
+				_this.clear.addEventListener('click', function() {
+					_this.clearCallback()
+				})
 			},
 			confirmCallback: function(){
+				var _this = this;
+				backgroundWindow.getCurCase(_this.selectedId, function(){
+					chrome.tabs.reload()
+				})
+			},
+			clearCallback: function(){
+				var caseList = this.caseList.querySelectorAll('.o2host_case_item');
+				for (var i = 0; i < caseList.length; i++) {
+					var caseItem = caseList[i];
+					caseItem.classList.remove('o2host_case_item_active')
+				}
+				this.selectedId  = '';
 				var _this = this;
 				backgroundWindow.getCurCase(_this.selectedId, function(){
 					chrome.tabs.reload()

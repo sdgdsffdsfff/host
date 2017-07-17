@@ -257,6 +257,8 @@ body,
   left: -999px;
 }
 .o2host_case_footer {
+  font-size: 0;
+  line-height: 0;
   padding: 10px;
   height: 34px;
 }
@@ -285,7 +287,9 @@ body,
 }
 
 .o2host_case_isBlank .o2host_case_confirm,
-.o2host_case_isLoading .o2host_case_confirm {
+.o2host_case_isLoading .o2host_case_confirm,
+.o2host_case_isBlank .o2host_case_clear,
+.o2host_case_isLoading .o2host_case_clear {
   display: none;
 }
 
