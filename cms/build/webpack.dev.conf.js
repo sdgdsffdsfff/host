@@ -29,7 +29,7 @@ module.exports = merge(baseWebpackConfig, {
       filename: 'index.html',
       template: 'index.html',
       inject: true,
-      favicon: 'src/images/favicon.ico'
+      favicon: './favicon.ico'
     })
   ]
 })
