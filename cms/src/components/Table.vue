@@ -3,7 +3,7 @@
     <template v-if="host.length == 0")>
     <div class="o2host_case_blank">
       <img class="o2host_case_blank_img" src="../images/blank.png">
-      <p v-if="curBusiness" class="o2host_case_blank_txt">暂无数据</p>
+      <p v-if="curBusiness" class="o2host_case_blank_txt">暂无数据，去<a href="javascript:;" class="o2host_case_blank_href" @click="showCaseAddPop">新增方案</a></p>
       <p v-else class="o2host_case_blank_txt">请选择或新增业务</p>
     </div>
     </template>
@@ -35,11 +35,11 @@ export default {
     curBusiness: {
       type: String,
       default: ''
+    },
+    businessArr: {
+      type: Array,
+      default: ''
     }
-    // businessArr: {
-    //   type: Array,
-    //   default: ''
-    // }
   },
   data () {
     return {
@@ -112,6 +112,21 @@ export default {
         }
       }
     },
+    getCurObj (id) {
+      for (var i = 0; i < this.businessArr.length; i++) {
+        var item = this.businessArr[i]
+        if (item.id === id) {
+          return item
+        }
+      }
+    },
+    showCaseAddPop () {
+      const cur = this.curBusiness
+      eventHub.$emit('showCasePop', {
+        type: 'add',
+        obj: this.getCurObj(cur)
+      })
+    },
     showCaseModifyPop (i) {
       eventHub.$emit('showCasePop', {
         type: 'modify',
@@ -144,7 +159,7 @@ export default {
   }
   &_blank {
     text-align: center;
-    opacity: 0.3;
+    opacity: 0.5;
     &_img {
       display: block;
       margin: 100px auto 20px;
@@ -153,6 +168,9 @@ export default {
     &_txt {
       color: #475669;
       margin-bottom: 100px;
+    }
+    &_href {
+      color: #20A0FF;
     }
   }
   &_tit {

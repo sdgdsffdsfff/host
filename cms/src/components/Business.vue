@@ -57,7 +57,7 @@ export default {
       })
       this.businessArr = businessArr
       // 通知 Business 业务数据拉取完成
-      // eventHub.$emit('finishQueryHostData')
+      eventHub.$emit('finishQueryHostData', businessArr)
       this.showData()
     })
     eventHub.$on('addData', this.addBusiness)

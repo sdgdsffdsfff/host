@@ -8,7 +8,7 @@
       <com-business :curBusiness="curBusiness"></com-business>
       <!-- e:业务下拉框 -->
       <!-- s:host方案数据列表 -->
-      <com-table :curBusiness="curBusiness"></com-table>
+      <com-table :curBusiness="curBusiness" :businessArr="businessArr"></com-table>
       <!-- e:host方案数据列表 -->
     </div>
     <!-- s:确认弹窗 -->
@@ -46,15 +46,20 @@ export default {
   },
   created () {
     eventHub.$on('queryHostData', this.setCurBusiness)
+    eventHub.$on('finishQueryHostData', this.setBusinessArr)
   },
   data () {
     return {
-      curBusiness: ''
+      curBusiness: '',
+      businessArr: []
     }
   },
   methods: {
     setCurBusiness (cur) {
       this.curBusiness = cur
+    },
+    setBusinessArr (businessArr) {
+      this.businessArr = businessArr
     }
   }
 }
