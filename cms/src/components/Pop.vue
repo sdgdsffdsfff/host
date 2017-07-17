@@ -46,6 +46,7 @@ export default {
     eventHub.$on('delData', this.closePop)
     eventHub.$on('addHostData', this.closePop)
     eventHub.$on('modifyHostData', this.closePop)
+    eventHub.$on('delHostData', this.closePop)
     eventHub.$on('submitData', this.setComfirmLoading)
   },
   methods: {
@@ -57,7 +58,6 @@ export default {
       this.confirmFn && this.confirmFn()
     },
     showPop (confirmFn, cancelFn) {
-      console.log(confirmFn, cancelFn)
       this.show = true
       this.confirmFn = confirmFn
       this.cancelFn = cancelFn
@@ -73,7 +73,7 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
+<style lang="sass">
 /*
 .host_mod_pop {
   position: fixed;

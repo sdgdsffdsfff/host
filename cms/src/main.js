@@ -58,18 +58,14 @@ router.beforeEach(({meta, path}, from, next) => {
   const isLogin = AV.User.current()
   if (!isLogin) {
     if (path === '/login') {
-      console.log('未登录cur')
       next()
     } else {
-      console.log('未登录jump')
       next({ path: '/login' })
     }
   } else {
     if (path === '/') {
-      console.log('已登录cur')
       next()
     } else {
-      console.log('已登录jump')
       next({ path: '/' })
     }
   }

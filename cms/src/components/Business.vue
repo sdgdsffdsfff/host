@@ -15,7 +15,7 @@
         </a></li>
       </el-select>
     </div>
-    <el-button class="o2host_business_btn" @click="showCaseAddPop" type="primary" v-show="buttonShow" >新增方案</el-button>
+    <el-button class="o2host_business_btn" @click="showCaseAddPop" type="primary" v-show="curBusiness">新增方案</el-button>
 	</div>
 </template>
 
@@ -37,9 +37,7 @@ export default {
   data () {
     return {
       businessArr: [],
-      show: false,
       loading: true,
-      buttonShow: false,
       curBusiness: ''
     }
   },
@@ -106,7 +104,6 @@ export default {
       })
     },
     selectBusiness (id) {
-      !this.buttonShow && (this.buttonShow = true)
       if (id !== this.curBusiness) {
         // this.$data.cur = id
         this.curBusiness = id
@@ -119,7 +116,7 @@ export default {
       this.businessArr.push({
         id: obj.id,
         name: obj.get('name'),
-        url: obj.get('url')
+        urlList: obj.get('url')
       })
       this.curBusiness = obj.id
     },
@@ -133,11 +130,10 @@ export default {
       this.curBusiness = obj.id
     },
     delBusiness (obj) {
-      var self = this
       for (var i = 0; i < this.businessArr.length; i++) {
         var item = this.businessArr[i]
         if (item.id === obj.id) {
-          self.businessArr.splice(i, 1)
+          this.businessArr.splice(i, 1)
         }
       }
       this.curBusiness = ''
@@ -146,7 +142,7 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
+<style lang="sass">
 .o2host_business {
   position: relative;
   margin-top: 20px;

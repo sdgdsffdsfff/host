@@ -1,5 +1,5 @@
 <template>
-  <div id="o2host" class="o2host">
+  <div class="o2host_wrapper">
     <!-- s:页面头部 -->
     <com-header></com-header>
     <!-- e:页面头部 -->
@@ -18,6 +18,7 @@
         </el-form-item>
       </el-form>
     </div>
+  </div>
 </template>
 
 <script>
@@ -66,7 +67,6 @@ export default {
             this.$router.push('/')
           }, error => {
             const code = error.code
-            console.log(code)
             switch (code) {
               case 210:
                 this.alert = {

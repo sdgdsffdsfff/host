@@ -1,13 +1,13 @@
 <template>
   <mod-pop ref="pop" title="编辑业务" class="o2host_pop_business">
-    <el-form :model="business" :rules="rules" ref="business" label-width="80px">
+    <el-form :model="business" :rules="rules" ref="business" label-width="70px">
       <el-form-item label="业务名" prop="name" class="o2host_pop_business_name">
         <el-input v-model="business.name"></el-input>
       </el-form-item>
       <div v-for="(item, index) in business.urlList" class="o2host_pop_business_url">
         <div class="o2host_pop_business_url_item">
           <el-form-item :label="'地址'+(index+1)" prop="url">
-            <el-input placeholder="请输入页面ID" v-model="item.url" v-if="item.isCms">
+            <el-input placeholder="页面ID" v-model="item.url" v-if="item.isCms">
               <template slot="prepend">{{cmsPrefix}}</template>
             </el-input>
             <el-input class="o2host_pop_business_url_input" v-model="item.url" v-else></el-input>
@@ -85,7 +85,6 @@ export default {
               isCms: item.isCms
             })
           })
-          console.log(url)
           business.set('name', this.business.name)
           business.set('url', url)
           business.save().then(function (results) {
@@ -168,7 +167,7 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
+<style lang="sass">
 .o2host_pop_business{
   &_url{
     &_item {

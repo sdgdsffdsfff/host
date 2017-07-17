@@ -37,7 +37,6 @@ export default {
       this.showUser = true
       this.user.name = user.get('username')
     } else {
-      console.log('当前未登录，正在跳转登录页面')
       this.$router.push('/login')
     }
   },
@@ -45,7 +44,6 @@ export default {
     logout () {
       AV.User.logOut().then(() => {
         // 登出后跳转到登录页面
-        console.log('已经登出，正在跳转登录页面')
         this.$router.push('/login')
       })
     }
@@ -53,14 +51,15 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 .o2host_header {
   position: relative;
   height: 100px;
   background: linear-gradient(to right, #1F2D3D, #475669);
   &_main {
     position: relative;
-    width: 1200px;
+    max-width: 1200px;
+    min-width: 990px;
     height: 100%;
     margin: 0 auto;
   }

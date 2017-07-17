@@ -1,7 +1,7 @@
 <template>
   <mod-pop ref="pop" title="编辑方案" class="o2host_pop_case">
     <div>
-      <el-form :model="caseData" ref="caseData" label-width="100px">
+      <el-form :model="caseData" ref="caseData" label-width="85px">
         <el-form-item label="方案名" prop="caseName" :rules="{ required: true, message: '方案名不能为空 😫', trigger: 'blur'}" class="o2host_pop_case_name">
           <el-input v-model="caseData.caseName"></el-input>
         </el-form-item>
@@ -24,13 +24,13 @@
           </div>
         </div> -->
         <el-form-item label="HOST" class="o2host_pop_case_host">
-          <div class="o2host_pop_case_host_list" v-if="!showEdit" @click="onHostFoucs">
+          <div class="o2host_pop_case_host_list" v-show="!showEdit" @click="onHostFoucs">
             <div class="o2host_pop_case_host_item" v-for="(item, index) in caseData.hostList">
               <div class="o2host_pop_case_host_ip">{{item.ip}}</div>
               <div class="o2host_pop_case_host_domain">{{item.domain}}</div>
             </div>
           </div>
-          <el-input v-focus="showEdit" autosize v-model="hostText" class="o2host_pop_case_host_edit" type="textarea" @blur="onHostBlur" v-else placeholder="格式如下：xx.xx.xx.xx www.xx.com（一条 host 占一行）"></el-input>
+          <el-input autosize v-model="hostText" class="o2host_pop_case_host_edit" type="textarea" @blur="onHostBlur" v-show="showEdit" placeholder="格式如下：xx.xx.xx.xx www.xx.com（一条 host 占一行）"></el-input>
         </el-form-item>
 <!--         <el-form-item class="o2host_pop_case_btn" v-show="showEdit">
           <el-button type="primary" v-on:click="onHostSave">保存</el-button>
@@ -224,7 +224,7 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
+<style lang="sass">
 .o2host_pop_case {
   &_item {
     position: relative;
@@ -240,6 +240,12 @@ export default {
       transition: border-color .2s cubic-bezier(.645,.045,.355,1);
       &:hover {
         border-color: #8492a6;
+      }
+    }
+    &_edit {
+      textarea {
+        min-height: 36px;
+        line-height: 24px;
       }
     }
     &_item {
@@ -264,10 +270,6 @@ export default {
     position: absolute;
     right: 10px;
     top: 30px;
-  }
-  &_batch {
-    border-top: 1px dashed #c0ccda;
-    padding: 20px 0 0;
   }
 }
 .o2host_pop_case_del {

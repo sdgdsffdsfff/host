@@ -17,17 +17,10 @@ table { border-collapse: collapse; border-spacing: 0; }
 del { text-decoration: line-through; }*/
 /*mark { background: none; }*/
 input::-ms-clear { display: none !important; }
-/*body { font: 12px/1.5 \5FAE\8F6F\96C5\9ED1, \5B8B\4F53, "Hiragino Sans GB", STHeiti, "WenQuanYi Micro Hei", "Droid Sans Fallback", SimSun, sans-serif; background: #fff; }*/
+body {font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;}
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
-html {
-  background: #F9FAFC;
-}
-.o2host_ctn {
-  width: 1200px;
-  margin: 0 auto;
-}
-.el-loading-mask {
-  z-index: 1000;
-}
+html { background: #F9FAFC; }
+.o2host_ctn { max-width: 1200px; min-width: 990px; margin: 0 auto; }
+.el-loading-mask { z-index: 1000; }
 </style>

@@ -50,7 +50,7 @@ export default {
   created: function () {
     eventHub.$on('addHostData', this.addData)
     eventHub.$on('modifyHostData', this.modifyData)
-    eventHub.$on('delData', this.delData)
+    eventHub.$on('delHostData', this.delData)
     eventHub.$on('queryHostData', this.queryData)
   },
   methods: {
@@ -105,11 +105,10 @@ export default {
       }
     },
     delData (caseItem) {
-      var self = this
       for (var i = 0; i < this.host.length; i++) {
         var item = this.host[i]
         if (item.id === caseItem.id) {
-          self.host.splice(i, 1)
+          this.host.splice(i, 1)
         }
       }
     },
@@ -130,10 +129,9 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 .o2host_case {
   position: relative;
-  width: 1160px;
   padding: 30px 20px 10px;
   border-radius: 5px;
   margin: 20px 0; 

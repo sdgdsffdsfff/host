@@ -19,8 +19,8 @@ var webpackConfig = merge(baseWebpackConfig, {
     path: config.build.assetsRoot,
     // publicPath: 'http://labs.qiang.it/yetty/hostPlatform/',
     publicPath: 'http://labs.qiang.it/o2host/',
-    filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    filename: utils.assetsPath('js/[name].js'),
+    chunkFilename: utils.assetsPath('js/[id].js')
   },
   vue: {
     loaders: utils.cssLoaders({
@@ -40,7 +40,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     // extract css into its own file
-    new ExtractTextPlugin(utils.assetsPath('css/[name].[contenthash].css')),
+    new ExtractTextPlugin(utils.assetsPath('css/[name].css')),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin

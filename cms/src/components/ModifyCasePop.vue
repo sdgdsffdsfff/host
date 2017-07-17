@@ -48,7 +48,7 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
+<style lang="sass">
 .host{
   &_add {
     width: 600px;

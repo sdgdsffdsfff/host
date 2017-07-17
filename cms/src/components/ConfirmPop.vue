@@ -40,7 +40,6 @@ export default {
           var business = AV.Object.createWithoutData('BUSINESS', this.objId)
           business.set('status', 0)
           business.save().then(function (results) {
-            console.log(results)
             eventHub.$emit('delData', results)
             Message.success('删除成功 😃')
           })
@@ -49,7 +48,7 @@ export default {
           var Case = AV.Object.createWithoutData('CASE', this.objId)
           Case.set('status', 0)
           Case.save().then(function () {
-            eventHub.$emit('delData', Case)
+            eventHub.$emit('delHostData', Case)
             Message.success('删除成功 😃')
           })
           break
@@ -59,6 +58,6 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
+<style lang="sass">
 
 </style>
