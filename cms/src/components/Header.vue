@@ -8,6 +8,7 @@
         </div>
         O2HOST
       </h1>
+      <div class="o2host_version">v 1.1.3</div>
       <div class="o2host_user" v-show="showUser">
         <img class="o2host_user_photo" src="../images/logo.png" />
         <span class="o2host_user_name">{{ user.name }}</span>
@@ -139,6 +140,15 @@ export default {
   color: #fff;
   padding-left: 70px;
   left: 0;
+}
+.o2host_version {
+  position: relative;
+  float: left;
+  height: 100px;
+  line-height: 100px;
+  margin-left: 20px;
+  color: #8492A6;
+  font-size: 12px;
 }
 .o2host_user {
   float: right;

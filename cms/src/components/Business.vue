@@ -2,7 +2,7 @@
 	<div class="o2host_business">
 	  <h2 class="o2host_business_tit">业务分类：</h2>
     <div class="o2host_business_ctn">
-      <el-select v-model="curBusiness" :loading="loading" loading-text="玩命加载中～" filterable @change="selectBusiness" placeholder="请选择业务" class="o2host_business_select" :class="{ loaded: !loading }">
+      <el-select v-model="curBusiness" :loading="loading" loading-text="玩命加载中～" @change="selectBusiness" placeholder="请选择业务" class="o2host_business_select" :class="{ loaded: !loading }">
         <el-option v-for="(item, index) in businessArr" :label="item.name" :value="item.id">
           <span class="o2host_business_name">{{ item.name }}</span>
           <span class="o2host_business_operate">

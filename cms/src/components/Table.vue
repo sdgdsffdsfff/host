@@ -3,7 +3,7 @@
     <template v-if="host.length == 0")>
     <div class="o2host_case_blank">
       <img class="o2host_case_blank_img" src="../images/blank.png">
-      <p v-if="curBusiness" class="o2host_case_blank_txt">暂无数据，去<a href="javascript:;" class="o2host_case_blank_href" @click="showCaseAddPop">新增方案</a></p>
+      <p v-if="curBusiness" class="o2host_case_blank_txt">{{ curBusinessName }}暂无数据，去<a href="javascript:;" class="o2host_case_blank_href" @click="showCaseAddPop">新增方案</a></p>
       <p v-else class="o2host_case_blank_txt">请选择或新增业务</p>
     </div>
     </template>
@@ -44,10 +44,11 @@ export default {
   data () {
     return {
       host: [],
-      loading: false
+      loading: false,
+      curBusinessName: ''
     }
   },
-  created: function () {
+  created () {
     eventHub.$on('addHostData', this.addData)
     eventHub.$on('modifyHostData', this.modifyData)
     eventHub.$on('delHostData', this.delData)
@@ -83,6 +84,7 @@ export default {
             self.host = hostArr
             self.loading = false // 去掉loading动画
           }
+          self.curBusinessName = '“' + self.getCurObj(id).name + '”'
         })
       }
     },

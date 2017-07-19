@@ -59,18 +59,6 @@
         </div> -->
       </el-form>
     </div>
-<!-- 
-      <div class="host_caseform_case">方案名：<input v-model="caseName"/></div>
-      <ul class="host_caseform_list">
-        <li class="host_caseform_item" v-for="(item, index) in hostList">
-          <p>ip：<input v-model="item.ip" /></p>
-          <p>domain：<input v-model="item.domain" /></p>
-          <button class="host_mod_btn" v-on:click="delHost(index)">删除</button>
-        </li>
-      </ul>
-      <button class="host_mod_btn" v-on:click="addHost">添加host</button>
-      <button class="host_mod_btn">批量录入host</button>
- -->
   </mod-pop>
 </template>
 
@@ -114,8 +102,6 @@ export default {
           callback(new Error('ip 格式不符合 😫 ：正确格式 "x.x.x.x"'))
         }
       },
-      // batch: false,
-      // batchHost: '',
       showEdit: false,
       hostText: ''
     }

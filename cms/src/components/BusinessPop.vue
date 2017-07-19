@@ -62,10 +62,12 @@ export default {
     this.pop = this.$refs.pop
   },
   methods: {
-    delEmptyUrl () {
+    formatUrl () {
       let urlList = []
       this.business.urlList.map((item) => {
         if (item.url !== '') {
+          // 删除协议头
+          item.url = item.url.replace(/^https?:\/\//, '')
           urlList.push(item)
         }
       })
@@ -74,7 +76,7 @@ export default {
     addFn () {
       this.$refs['business'].validate((valid) => {
         if (valid) {
-          this.delEmptyUrl()
+          this.formatUrl()
           eventHub.$emit('submitData')
           const BusinessData = AV.Object.extend('BUSINESS')
           const business = new BusinessData()
@@ -101,7 +103,7 @@ export default {
     modifyFn () {
       this.$refs['business'].validate((valid) => {
         if (valid) {
-          this.delEmptyUrl()
+          this.formatUrl()
           eventHub.$emit('submitData')
           const business = AV.Object.createWithoutData('BUSINESS', this.business.id)
           let url = []
