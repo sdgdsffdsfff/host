@@ -1,6 +1,6 @@
 # o2host
 
-> A Vue.js project
+> 基于 Vue.js 的管理后台
 
 ## Build Setup
 
