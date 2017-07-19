@@ -1,4 +1,4 @@
-# o2_host_platform
+# o2host
 
 > A Vue.js project
 
@@ -26,9 +26,9 @@ npm test
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-### 更新纪要
+## ChangeLog
 #### 2017.07.19 v 1.1.3
-- 添加版本号
-- 输入业务地址删除协议头
-- 业务下无数据时提示新增方案
-- 业务选择去掉 filterable
+- feat:添加版本号
+- feat:输入业务地址删除协议头
+- feat:业务下无数据时提示新增方案
+- fix:业务选择去掉 filterable
