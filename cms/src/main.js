@@ -7,7 +7,7 @@ import VueRouter from 'vue-router'
 // 导入路由配置文件
 import routes from './routes'
 // 导入UI组件
-import { Button, Select, Table, TableColumn, Option, Dialog, Form, FormItem, Input, Loading, Card, Alert } from 'element-ui'
+import { Button, Select, Table, TableColumn, Option, Dialog, Form, FormItem, Input, Loading, Card, Alert, Checkbox, ButtonGroup } from 'element-ui'
 import AV from './leancloud'
 
 // 注册插件
@@ -24,6 +24,8 @@ Vue.component(Input.name, Input)
 Vue.use(Loading)
 Vue.component(Card.name, Card)
 Vue.component(Alert.name, Alert)
+Vue.component(Checkbox.name, Checkbox)
+Vue.component(ButtonGroup.name, ButtonGroup)
 /* eslint-disable no-new */
 // const app = new Vue({
 //   el: '#app',

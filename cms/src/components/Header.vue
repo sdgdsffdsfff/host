@@ -8,7 +8,7 @@
         </div>
         O2HOST
       </h1>
-      <div class="o2host_version">v 1.1.3</div>
+      <div class="o2host_version">v 1.1.4</div>
       <div class="o2host_user" v-show="showUser">
         <img class="o2host_user_photo" src="../images/logo.png" />
         <span class="o2host_user_name">{{ user.name }}</span>

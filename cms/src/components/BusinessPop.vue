@@ -47,7 +47,7 @@ export default {
       rules: {
         name: [
           { required: true, message: '业务名不能为空 😫', trigger: 'blur' },
-          { max: 20, message: '长度不超过 20 个字符', trigger: 'blur' }
+          { max: 20, message: '长度不超过 20 个字符 😫', trigger: 'blur' }
         ]
         // url: [
         //   { required: true, message: 'url不能为空 😫', trigger: 'blur' }

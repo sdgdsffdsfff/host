@@ -1,64 +1,27 @@
 <template>
   <mod-pop ref="pop" title="编辑方案" class="o2host_pop_case">
-    <div>
-      <el-form :model="caseData" ref="caseData" label-width="85px">
-        <el-form-item label="方案名" prop="caseName" :rules="{ required: true, message: '方案名不能为空 😫', trigger: 'blur'}" class="o2host_pop_case_name">
-          <el-input v-model="caseData.caseName"></el-input>
-        </el-form-item>
-        <el-form-item label="方案描述" prop="caseIntro" :rules="{ required: true, message: '方案描述不能为空 😫', trigger: 'blur'}" class="o2host_pop_case_intro">
-          <el-input v-model="caseData.caseIntro"></el-input>
-        </el-form-item>
-<!--         <div class="o2host_pop_case_list">
-          <div class="o2host_pop_case_item" v-for="(item, index) in caseData.hostList">
-            <div class="o2host_pop_case_host">
-              <el-form-item label="ip" :prop="'hostList.' + index + '.ip'" :rules="[{required: true, message: 'ip 不能为空 😫', trigger: 'blur'}, { validator: checkIp, trigger: 'blur' }]" class="o2host_pop_case_host_ip">
-                <el-input v-model="item.ip"></el-input>
-              </el-form-item>
-              <el-form-item label="domain" :prop="'hostList.' + index + '.domain'" :rules="{required: true, message: 'domain 不能为空 😫', trigger: 'blur'}" class="o2host_pop_case_host_domain">
-                <el-input v-model="item.domain"></el-input>
-              </el-form-item>
-            </div>
-            <div class="o2host_pop_case_del" >
-              <a href="javascript:;" v-on:click="delHost(index)"><i class="el-icon-delete"></i></a>
-            </div>
+    <el-form :model="caseData" :rules="rules" ref="caseData" label-width="85px">
+      <el-form-item label="方案名" prop="caseName" class="o2host_pop_case_name">
+        <el-input v-model="caseData.caseName"></el-input>
+      </el-form-item>
+      <el-form-item label="方案描述" prop="caseIntro" class="o2host_pop_case_intro">
+        <el-input v-model="caseData.caseIntro"></el-input>
+      </el-form-item>
+      <el-form-item label="HOST" class="o2host_pop_case_host">
+        <div class="o2host_pop_case_host_list" v-show="!showEdit" @click="onHostFoucs">
+          <div class="o2host_pop_case_host_item" v-for="(item, index) in caseData.hostList">
+            <div class="o2host_pop_case_host_ip">{{item.ip}}</div>
+            <div class="o2host_pop_case_host_domain">{{item.domain}}</div>
           </div>
-        </div> -->
-        <el-form-item label="HOST" class="o2host_pop_case_host">
-          <div class="o2host_pop_case_host_list" v-show="!showEdit" @click="onHostFoucs">
-            <div class="o2host_pop_case_host_item" v-for="(item, index) in caseData.hostList">
-              <div class="o2host_pop_case_host_ip">{{item.ip}}</div>
-              <div class="o2host_pop_case_host_domain">{{item.domain}}</div>
-            </div>
-          </div>
-          <el-input autosize v-model="hostText" class="o2host_pop_case_host_edit" type="textarea" @blur="onHostBlur" v-show="showEdit" placeholder="格式如下：xx.xx.xx.xx www.xx.com（一条 host 占一行）"></el-input>
-        </el-form-item>
-<!--         <el-form-item class="o2host_pop_case_btn" v-show="showEdit">
-          <el-button type="primary" v-on:click="onHostSave">保存</el-button>
-          <el-button v-on:click="onHostCancel">取消</el-button>
-        </el-form-item> -->
-<!--         <template v-if="caseData.hostList.length">
-          <el-table :data="caseData.hostList" class="o2host_pop_case_list">
-            <el-table-column prop="ip" label="IP"></el-table-column>
-            <el-table-column prop="domain" label="DOMAIN"></el-table-column>
-          </el-table>
-        </template>
- -->
-<!--         <el-form-item class="o2host_pop_case_btn">
-          <el-button v-on:click="addHost">添加host</el-button>
-          <el-button v-on:click="toggleBatchHost">批量录入host</el-button>
-        </el-form-item> -->
-
-<!--         <div class="o2host_pop_case_batch J_case_batch" v-if="batch">
-          <el-form-item label="批量host">
-            <el-input type="textarea" v-model="batchHost" placeholder="格式如下：xx.xx.xx.xx www.xx.com（一条 host 占一行）"></el-input>
-          </el-form-item>
-          <el-form-item class="o2host_pop_case_btn">
-            <el-button type="primary" v-on:click="saveBatchHost">保存</el-button>
-            <el-button v-on:click="toggleBatchHost">取消</el-button>
-          </el-form-item>
-        </div> -->
-      </el-form>
-    </div>
+        </div>
+        <div class="o2host_pop_case_host_edit" v-show="showEdit">
+          <el-input autosize v-model="hostText" type="textarea" @blur="onHostBlur" placeholder="格式如下：xx.xx.xx.xx www.xx.com（一条 host 占一行）"></el-input>
+          <template v-for="(item, index) in pubHostList">
+           <button class="el-button el-button--primary el-button--mini o2host_pop_case_host_pub" @mousedown="onSelectHost(index)"><i class="el-icon-plus"></i><span>{{item.name}}</span></button>
+          </template>
+        </div>
+      </el-form-item>
+    </el-form>
   </mod-pop>
 </template>
 
@@ -87,23 +50,56 @@ export default {
         caseIntro: '',
         hostList: []
       },
-      checkIp: (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('ip 不能为空 😫'))
-        }
-        var re = /^(\d+)\.(\d+)\.(\d+)\.(\d+)$/g
-        if (re.test(value)) {
-          if (RegExp.$1 < 256 && RegExp.$2 < 256 && RegExp.$3 < 256 && RegExp.$4 < 256) {
-            callback()
-          } else {
-            callback(new Error('ip 格式不符合 😫 ：单个字节最大为255 '))
-          }
-        } else {
-          callback(new Error('ip 格式不符合 😫 ：正确格式 "x.x.x.x"'))
-        }
+      // checkIp: (rule, value, callback) => {
+      //   if (!value) {
+      //     return callback(new Error('ip 不能为空 😫'))
+      //   }
+      //   var re = /^(\d+)\.(\d+)\.(\d+)\.(\d+)$/g
+      //   if (re.test(value)) {
+      //     if (RegExp.$1 < 256 && RegExp.$2 < 256 && RegExp.$3 < 256 && RegExp.$4 < 256) {
+      //       callback()
+      //     } else {
+      //       callback(new Error('ip 格式不符合 😫 ：单个字节最大为255 '))
+      //     }
+      //   } else {
+      //     callback(new Error('ip 格式不符合 😫 ：正确格式 "x.x.x.x"'))
+      //   }
+      // },
+      rules: {
+        caseName: [
+          { required: true, message: '方案名不能为空 😫', trigger: 'blur' },
+          { max: 10, message: '长度不超过 10 个字符 😫', trigger: 'blur' }
+        ],
+        caseIntro: [
+          { required: true, message: '方案描述不能为空 😫', trigger: 'blur' },
+          { max: 20, message: '长度不超过 20 个字符 😫', trigger: 'blur' }
+        ]
       },
+      pubHostList: [
+        {
+          name: '32 static',
+          ip: '192.168.193.32',
+          domain: 'static.360buyimg.com'
+        },
+        {
+          name: '26 static',
+          ip: '192.168.101.26',
+          domain: 'static.360buyimg.com'
+        },
+        {
+          name: '32 misc',
+          ip: '192.168.193.32',
+          domain: 'misc.360buyimg.com'
+        },
+        {
+          name: '26 misc',
+          ip: '192.168.101.26',
+          domain: 'misc.360buyimg.com'
+        }
+      ],
       showEdit: false,
-      hostText: ''
+      hostText: '',
+      needBlur: true
     }
   },
   created () {
@@ -113,6 +109,12 @@ export default {
     this.pop = this.$refs.pop
   },
   methods: {
+    bindEvents () {
+      document.addEventListener('mouseup', this.finishSelectHost)
+    },
+    unbindEvents () {
+      document.removeEventListener('mouseup', this.finishSelectHost)
+    },
     addFn () {
       this.$refs['caseData'].validate((valid) => {
         if (valid) {
@@ -127,6 +129,7 @@ export default {
             eventHub.$emit('addHostData', results)
             this.hostText = ''
             Message.success('添加成功 😃')
+            this.unbindEvents()
           })
         } else {
           // console.log('error submit!!')
@@ -146,6 +149,7 @@ export default {
           Case.save().then(function (results) { // 存储Case数据
             eventHub.$emit('modifyHostData', results)
             Message.success('修改成功 😃')
+            this.unbindEvents()
           })
         } else {
           // console.log('error submit!!')
@@ -156,8 +160,10 @@ export default {
     },
     cancelFn () {
       this.$refs['caseData'].resetFields()
+      this.unbindEvents()
     },
     showPop (obj) {
+      this.bindEvents()
       this.hostText = ''
       switch (obj.type) {
         case 'add':
@@ -187,24 +193,35 @@ export default {
     // addHost () {
     //   this.caseData.hostList.push({ip: '', domain: ''})
     // },
-    delHost (i) {
-      this.caseData.hostList.splice(i, 1)
-    },
     onHostFoucs () {
       this.showEdit = true
+      this.$nextTick(() => {
+        document.querySelector('.o2host_pop_case_host_edit textarea').focus()
+      })
     },
-    onHostBlur () {
-      this.caseData.hostList = []
-      const textArr = this.hostText.split(/\s+/g).filter(String)
-      for (let index = 0; index < textArr.length; index += 2) {
-        const idx = Math.floor(index / 2)
-        this.caseData.hostList[idx] = {
-          id: '',
-          ip: textArr[index] || '',
-          domain: textArr[index + 1] || ''
+    onHostBlur (event) {
+      if (this.needBlur) {
+        this.caseData.hostList = []
+        const textArr = this.hostText.split(/\s+/g).filter(String)
+        for (let index = 0; index < textArr.length; index += 2) {
+          const idx = Math.floor(index / 2)
+          this.caseData.hostList[idx] = {
+            id: '',
+            ip: textArr[index] || '',
+            domain: textArr[index + 1] || ''
+          }
         }
+        this.showEdit = false
       }
-      this.showEdit = false
+    },
+    onSelectHost (idx) {
+      this.needBlur = false
+      this.hostText += this.pubHostList[idx].ip + ' ' + this.pubHostList[idx].domain + '\n'
+    },
+    finishSelectHost (event) {
+      this.needBlur = true
+      document.querySelector('.o2host_pop_case_host_edit textarea').focus()
+      // console.log(this.needBlur)
     }
   }
 }
@@ -216,27 +233,34 @@ export default {
     position: relative;
   }
   &_host {
+    min-height: 150px;
     &_list {
       background-color: #fff;
       border-radius: 4px;
       border: 1px solid #c0ccda;
       color: #1f2d3d;
-      padding: 3px 10px;
-      min-height: 28px;
+      padding: 0 10px;
+      min-height: 106px;
       transition: border-color .2s cubic-bezier(.645,.045,.355,1);
       &:hover {
         border-color: #8492a6;
       }
     }
     &_edit {
+      margin-bottom: 5px;
       textarea {
-        min-height: 36px;
+        min-height: 108px;
         line-height: 24px;
       }
     }
     &_item {
+      position: relative;
       border-bottom: 1px dashed #c0ccda;
-      overflow: hidden;
+      overflow: hidden;  
+      .el-checkbox {
+        position: absolute;
+        right: 0;
+      }
       &:last-child {
         border-bottom: none;
       }
@@ -248,8 +272,9 @@ export default {
     }
     &_ip,
     &_domain {
-      width: 50%;
+      width: 40%;
       float: left;
+      padding-right: 10%;
     }
   }
   &_del {
