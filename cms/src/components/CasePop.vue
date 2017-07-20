@@ -17,7 +17,7 @@
         <div class="o2host_pop_case_host_edit" v-show="showEdit">
           <el-input autosize v-model="hostText" type="textarea" @blur="onHostBlur" placeholder="格式如下：xx.xx.xx.xx www.xx.com（一条 host 占一行）"></el-input>
           <template v-for="(item, index) in pubHostList">
-           <button class="el-button el-button--primary el-button--mini o2host_pop_case_host_pub" @mousedown="onSelectHost(index)"><i class="el-icon-plus"></i><span>{{item.name}}</span></button>
+           <button type="button" class="el-button el-button--primary el-button--mini o2host_pop_case_host_pub" @mousedown="onSelectHost(index)"><i class="el-icon-plus"></i><span>{{item.name}}</span></button>
           </template>
         </div>
       </el-form-item>
